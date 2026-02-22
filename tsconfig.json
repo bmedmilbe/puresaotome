@@ -19,6 +19,12 @@
       }
     ],
     "paths": {
+      "@heroicons/react/24/outline": [
+        "./node_modules/@heroicons/react/24/outline/index.d.ts"
+      ],
+      "@heroicons/react/24/solid": [
+        "./node_modules/@heroicons/react/24/solid/index.d.ts"
+      ],
       "@/*": ["./*"]
     }
   },
