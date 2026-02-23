@@ -2,21 +2,18 @@
 
 import { useState, useMemo, useActionState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MetaData } from "@/lib/services/metadata-service";
 import {
-  ActionResponseForUnknownProfile,
-  submiteUnknownProfile,
-} from "../actions/profile";
+  BespokeTag,
+  MetaData,
+  ProfileTag,
+  ProfileType,
+} from "@/lib/services/metadata-service";
+import { type ActionResponse, signFromTagAction } from "../actions/auth";
 import Link from "next/link";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import DistillationLoader from "./DistillationLoader";
-
-const PROFILE_WEIGHTS: Record<string, number> = {
-  "the-rare-explorer": 1.2,
-  "the-heritage-collector": 1.1,
-  "the-tropical-minimalist": 1.0,
-};
+import { saveTagsAction } from "../actions/profile";
 
 export default function ProfileCreator({
   initialMetadata,
@@ -24,10 +21,11 @@ export default function ProfileCreator({
   initialMetadata: MetaData;
 }) {
   const router = useRouter();
-  const [selectedTags, setSelectedTags] = useState<number[]>([]);
   const [showPasswordFields, setShowPasswordFields] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [isDistilling, setIsDistilling] = useState(false);
+  const [selectedTags, setSelectedTags] = useState<number[]>([]);
+
   const toggleTag = (id: number) => {
     setSelectedTags((prev) =>
       prev.includes(id)
@@ -41,42 +39,57 @@ export default function ProfileCreator({
   const finalProfile = useMemo(() => {
     if (selectedTags.length < 3) return null;
 
-    const scored = initialMetadata.profile_types.map((profile: any) => {
-      const matchCount = profile.profile_tags.filter((pt: any) =>
+    const scored = initialMetadata.profile_types.map((profile: ProfileType) => {
+      const matchCount = profile.profile_tags.filter((pt: ProfileTag) =>
         selectedTags.includes(pt.bespoke_tag.id),
       ).length;
 
       return {
         ...profile,
-        score: matchCount * (PROFILE_WEIGHTS[profile.slug] || 1.0),
+        score: matchCount * profile.weight,
       };
     });
 
     return scored.sort((a: any, b: any) => b.score - a.score)[0];
   }, [selectedTags, initialMetadata.profile_types]);
 
-  const initialState: ActionResponseForUnknownProfile = {
+  const initialState: ActionResponse = {
     success: false,
     message: "",
     inputs: { email: "" },
   };
 
   const [state, formAction, isPending] = useActionState(
-    submiteUnknownProfile,
+    signFromTagAction,
     initialState,
   );
 
   useEffect(() => {
     if (state.success) {
       setIsDistilling(true);
+
+      const performSaveTags = async () => {
+        try {
+          const response = await saveTagsAction(selectedTags);
+
+          if (!response.success) {
+            console.error("Background sync failed:", response.error);
+          }
+        } catch (error) {
+          console.error("Save error:", error);
+        }
+      };
+
+      performSaveTags();
     }
-  }, [state]);
-  // Function called when loader finishes its animation
+  }, [state.success, selectedTags]);
+
   const handleDistillationComplete = () => {
-    toast.success(
-      "Access Key confirmed. Your private vault is now synchronized.",
-    );
-    router.push("/portal/dashboard"); // Final destination
+    toast.success("Identity Secured", {
+      description: "Access Key confirmed. Your private vault is synchronized.",
+    });
+
+    router.push("/portal/dashboard");
   };
 
   return (
@@ -109,7 +122,7 @@ export default function ProfileCreator({
               </p>
 
               <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                {initialMetadata.bespoke_tags.map((tag: any) => {
+                {initialMetadata.bespoke_tags.map((tag: BespokeTag) => {
                   const isActive = selectedTags.includes(tag.id);
                   return (
                     <motion.button
