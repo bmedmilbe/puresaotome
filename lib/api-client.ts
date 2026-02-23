@@ -1,12 +1,11 @@
-// import { cookies } from "next/headers";
-
+"use server";
 import { cookies } from "next/headers";
 
-// lib/api-client.ts
 export type ApiResult<T> = {
   success: boolean;
   data: T;
   message: string;
+  errors?: Record<string, string[]>; // Added to capture Django field errors
   status?: number;
 };
 
@@ -18,24 +17,32 @@ export const apiRequest = async <T>(
     const url = `${process.env.API_BASE_URL || "http://localhost:8000"}${endpoint}`;
     const cookieStore = await cookies();
     const token = cookieStore.get("auth_token")?.value;
-    const authHeader = token ? `JWT ${token}` : "";
+
     const response = await fetch(url, {
       ...params,
       headers: {
-        ...params.headers, // Merge existing headers if any
-        Authorization: authHeader,
         "Content-Type": "application/json",
+        ...(token && { Authorization: `JWT ${token}` }),
+        ...params.headers,
       },
     });
 
-    // Safely parse JSON or return null if it's not JSON (like HTML 500 pages)
     const payload = await response.json().catch(() => null);
+
     if (!response.ok) {
+      // 1. Handle field-specific validation errors (Common in 400 Bad Request)
+      // Django returns: { "email": ["already exists"], "password": ["too short"] }
+      const hasFieldErrors =
+        payload && typeof payload === "object" && !payload.detail;
+
       return {
         success: false,
-        message:
-          payload?.detail || payload?.message || `Error ${response.status}`,
         status: response.status,
+        // If it's a generic error, use 'detail'. If field errors, provide a summary.
+        message:
+          payload?.detail ||
+          (hasFieldErrors ? "Validation failed" : "An error occurred"),
+        errors: hasFieldErrors ? payload : undefined,
         data: {} as T,
       };
     }
