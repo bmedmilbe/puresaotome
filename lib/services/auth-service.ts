@@ -16,17 +16,14 @@ interface CheckEmailResponse {
   exists: boolean;
 }
 export const authService = {
-  checkEmail: async (email: string) =>
-    apiRequest<CheckEmailResponse>(`/users/check-email/?email=${email}`),
-
   signUp: async (data: object) =>
-    apiRequest<AuthNewUserResponse>("/auth/register/", {
+    apiRequest<AuthNewUserResponse>("/auth/users/", {
       method: "POST",
       body: JSON.stringify(data),
     }),
 
   signIn: async (credentials: object) =>
-    apiRequest<AuthLoginResponse>("/auth/login/", {
+    apiRequest<AuthLoginResponse>("/auth/jwt/create/", {
       method: "POST",
       body: JSON.stringify(credentials),
     }),

@@ -59,18 +59,6 @@ export async function signInAction(
       };
     }
 
-    // Find user by email
-    const user = await authService.checkEmail(data.email);
-    if (!user.success) {
-      return {
-        success: false,
-        message: "Invalid email or password",
-        errors: {
-          email: ["Invalid email or password"],
-        },
-      };
-    }
-
     // Verify password
     const response = await authService.signIn(data);
     if (!response?.success) {
@@ -121,16 +109,6 @@ export async function signUpAction(
         success: false,
         message: "Validation failed",
         errors: validationResult.error.flatten().fieldErrors,
-        inputs: { email: data.email },
-      };
-    }
-
-    const emailExists = await authService.checkEmail(data.email);
-    if (!emailExists.success) {
-      return {
-        success: false,
-        message: "User with this email already exists",
-        errors: { email: ["User with this email already exists"] },
         inputs: { email: data.email },
       };
     }
