@@ -193,7 +193,7 @@ export default function SignUpPage() {
             <p className="text-xs text-gray-400 font-light">
               Already a member?{" "}
               <Link
-                href="/portal/login"
+                href="/signin"
                 className="text-brand-green font-medium underline underline-offset-4 decoration-1 decoration-brand-sand/30"
               >
                 Sign In
