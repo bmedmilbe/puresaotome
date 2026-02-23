@@ -30,7 +30,7 @@ const Layout = ({ children }: Props) => {
               Our Purity
             </Link>
             <Link
-              href="/portal/login"
+              href="/signin"
               className="border border-white px-5 py-2 hover:bg-white hover:text-black transition duration-500"
             >
               Client Portal
