@@ -8,7 +8,7 @@ import {
   submiteUnknownProfile,
 } from "../actions/profile";
 import Link from "next/link";
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import DistillationLoader from "./DistillationLoader";
 
@@ -67,12 +67,10 @@ export default function ProfileCreator({
   );
 
   useEffect(() => {
-    // if (state.success) {
-    if (true) {
+    if (state.success) {
       setIsDistilling(true);
     }
-  }, []);
-  // }, [state]);
+  }, [state]);
   // Function called when loader finishes its animation
   const handleDistillationComplete = () => {
     toast.success(
