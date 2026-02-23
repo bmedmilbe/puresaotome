@@ -34,11 +34,20 @@ export default function RootLayout({
           position="bottom-right"
           toastOptions={{
             style: {
-              background: "#1A3C34", // Your brand green
-              color: "#F4F1EA", // Your off-white
-              border: "1px solid rgba(212, 185, 150, 0.2)", // Subtle gold border
-              borderRadius: "0px", // Sharp edges for a high-end feel
-              fontFamily: "serif", // Match your brand font
+              background: "#1A3C34",
+              color: "#F4F1EA",
+              border: "1px solid rgba(212, 185, 150, 0.2)",
+              borderRadius: "0px",
+              fontFamily: "serif",
+              padding: "1.5rem",
+            },
+            classNames: {
+              toast: "bg-[#1A3C34] border border-[#D4B996]/20 rounded-none",
+              title: "text-[#F4F1EA] font-serif italic text-lg",
+              // Adding ! (important) to force the color override
+              description:
+                "!text-[#F4F1EA]/80 font-light tracking-widest text-[10px] uppercase mt-2 leading-relaxed",
+              success: "bg-[#1A3C34] text-[#F4F1EA]", // Ensures success state doesn't change colors
             },
           }}
         />

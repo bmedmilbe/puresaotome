@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { useActionState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
-import { signUpAction, ActionResponse } from "@/app/actions/auth";
+import { signUpAction, ActionResponse } from "@/app/actions/authoff";
 // import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline"; // You can use any icon library
 import EyeIcon from "@heroicons/react/24/outline/EyeIcon";
 import EyeSlashIcon from "@heroicons/react/24/outline/EyeSlashIcon";

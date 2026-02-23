@@ -16,12 +16,14 @@ export type ProfileType = {
   slug: string;
   image: string;
   profile_tags: ProfileTag[];
+  weight: number;
 };
 export type ProfileTypeSimple = {
   id: number;
   title: string;
   slug: string;
   image: string;
+  weight: number;
 };
 export type ProfileTagForBespoke = {
   id: number;
