@@ -39,7 +39,7 @@ export default function PotentialitiesSection() {
             </h2>
           </div>
           <Link
-            href="/blog"
+            href="/insights"
             className="text-[10px] uppercase tracking-widest font-bold text-[#D4B996] flex items-center gap-2 border-b border-[#D4B996] pb-2"
           >
             Explore Nature Insights <ArrowRight size={14} />
