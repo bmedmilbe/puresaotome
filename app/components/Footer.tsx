@@ -41,11 +41,12 @@ export default function Footer() {
 
         {/* UK Compliance & Advocacy Model Note */}
         <div className="mt-12 pt-8 border-t border-[#1A3C34]/5">
-          <p className="text-[10px] leading-relaxed text-[#1A3C34]/50 max-w-3xl font-light">
-            Pure São Tomé is a Travel Management Consultancy. We charge a
-            professional fee for curation and logistical advocacy. All
-            third-party services are settled directly at net cost, ensuring
-            absolute financial transparency.
+          <p className="text-[10px] leading-relaxed text-[#1A3C34]/50 max-w-3xl font-light italic">
+            Pure São Tomé is a Travel Management Consultancy registered in the
+            United Kingdom. We operate as a Professional Collection Agent for
+            vetted local partners. Our £150 Advocacy Fee ensures absolute
+            financial transparency, with all third-party logistics settled at
+            net local cost.
           </p>
         </div>
       </div>
