@@ -1,4 +1,4 @@
-import ProfileCreator from "@/app/components/ProfileCreator";
+import ProfileCreator from "@/app/components/homesections/ProfileCreator";
 import { metadataService } from "@/lib/services/metadata-service";
 
 export default async function Page() {
