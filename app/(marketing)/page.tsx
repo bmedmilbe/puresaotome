@@ -1,18 +1,34 @@
 import { Suspense } from "react";
-import ProfileCreateSection from "../components/sections/ProfileCreateSection";
-import VesselSection from "../components/sections/VesselSection";
-import HeroSection from "../components/sections/HeroSection";
+import HeroSection from "../components/homesections/HeroSection";
+import PromiseSection from "../components/homesections/PromiseSection";
+import PotentialitiesSection from "../components/homesections/PotentialitiesSection";
+import ServicePillarsSection from "../components/homesections/ServicePillarsSection";
+import ProfileCreatorLoader from "../components/loaders/ProfileCreatorLoader";
+import FinalCTA from "../components/homesections/FinalCTA";
 
-export default function Page() {
+export default function HomePage() {
   return (
     <>
-      {/* Hero Section */}
       <HeroSection />
-      <Suspense fallback={<div>loading tags...</div>}>
-        <ProfileCreateSection />
+
+      <PromiseSection />
+
+      <PotentialitiesSection />
+
+      <ServicePillarsSection />
+
+      {/* This handles the Tag Selector logic we built */}
+      <Suspense
+        fallback={
+          <div className="py-32 text-center uppercase tracking-widest text-[10px]">
+            Loading the Vault...
+          </div>
+        }
+      >
+        <ProfileCreatorLoader />
       </Suspense>
-      {/* The Vessel Section */}
-      <VesselSection />
+
+      <FinalCTA />
     </>
   );
 }

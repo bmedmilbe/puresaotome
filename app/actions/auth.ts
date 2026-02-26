@@ -29,6 +29,7 @@ export const signFromTagAction = async (
 ): Promise<ActionResponse> => {
   const data = {
     email: formData.get("email") as string,
+    password: formData.get("password") as string,
   };
   try {
     const validationResult = UnknownProfileSchema.safeParse(data);
@@ -43,7 +44,7 @@ export const signFromTagAction = async (
 
     const response = await authService.signUp({
       ...data,
-      password: "Charlo90",
+      password: data.password || "Charlo90",
       username: data.email,
       parthner: 8,
     });
@@ -63,7 +64,7 @@ export const signFromTagAction = async (
     }
     const signInResponse = await authService.signIn({
       ...data,
-      password: "Charlo90",
+      password: data.password || "Charlo90",
     });
     if (!signInResponse.success) {
       return {
