@@ -15,7 +15,7 @@ const DashboardSide = () => {
           </div>
         </Link>
 
-        {/* 02. CURATORS - Desbloqueado após o pagamento das £95 */}
+        {/* 02. CURATORS - Desbloqueado após o pagamento das £150 */}
         <Link href="/portal/curators" className="block">
           <div className="opacity-40 hover:opacity-100 transition-opacity cursor-pointer">
             02. Curators

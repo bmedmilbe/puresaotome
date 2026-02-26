@@ -129,7 +129,7 @@ export default function DashboardPage() {
                 <span className="italic font-serif text-[#D4B996]">
                   Personalized Consultation
                 </span>
-                . I do not sell generic packages. The <strong>£95 fee</strong>{" "}
+                . I do not sell generic packages. The <strong>£150 fee</strong>{" "}
                 is what you pay for my time and knowledge to:
               </p>
               <ul className="space-y-3 text-[10px] uppercase tracking-widest">
@@ -148,7 +148,7 @@ export default function DashboardPage() {
                   Consultancy & Connection Fee:
                 </p>
                 <p className="font-serif text-4xl text-[#D4B996] mt-1">
-                  £95.00
+                  £150.00
                 </p>
               </div>
               <button className="px-10 py-5 bg-[#F4F1EA] text-[#1A3C34] text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-[#D4B996] transition-all">

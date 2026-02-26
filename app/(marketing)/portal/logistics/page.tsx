@@ -211,7 +211,7 @@ export default function DashboardPage() {
           <div className="grid md:grid-cols-2 gap-12 text-[11px] uppercase tracking-widest leading-loose mb-12">
             <div className="space-y-4">
               <p className="text-[#D4B996] font-bold text-xs italic">
-                Step 01: The Consultation (£95)
+                Step 01: The Consultation (£150)
               </p>
               <p className="opacity-80">
                 Paid today to initiate my work. I will use your flight details
@@ -237,7 +237,7 @@ export default function DashboardPage() {
               <p className="text-[10px] uppercase tracking-widest font-bold opacity-60">
                 Due today to start curation:
               </p>
-              <p className="font-serif text-5xl text-[#D4B996] mt-2">£95.00</p>
+              <p className="font-serif text-5xl text-[#D4B996] mt-2">£150.00</p>
             </div>
             <button className="w-full md:w-auto px-16 py-6 bg-[#F4F1EA] text-[#1A3C34] text-[10px] uppercase tracking-[0.4em] font-bold hover:bg-[#D4B996] transition-all duration-500 shadow-xl">
               Secure My Consultation

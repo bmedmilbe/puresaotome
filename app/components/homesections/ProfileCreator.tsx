@@ -204,7 +204,6 @@ export default function ProfileCreateSection({
                         placeholder="harrison@example.com"
                       />
                     </div>
-
                     {/* PASSWORD TOGGLE FUNCTIONALITY */}
                     <div className="space-y-4">
                       <div className="flex items-center gap-3 py-2">
@@ -260,7 +259,6 @@ export default function ProfileCreateSection({
                         )}
                       </AnimatePresence>
                     </div>
-
                     <input
                       type="hidden"
                       name="detected_profile"
@@ -271,16 +269,22 @@ export default function ProfileCreateSection({
                       name="selected_tags"
                       value={selectedTags.join(",")}
                     />
-
                     <button
                       disabled={isPending}
                       className="w-full bg-[#1A3C34] text-[#F4F1EA] py-5 text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-[#D4B996] transition-all group overflow-hidden relative"
                     >
                       <span className="relative z-10">
-                        {isPending ? "Distilling..." : "Retain Your Advocate"}
+                        {isPending
+                          ? "Distilling..."
+                          : "Secure Your Private Advocate"}
                       </span>
                       <div className="absolute inset-0 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                     </button>
+                    // E altere o header do Archetype Panel:
+                    <span className="text-[#D4B996] uppercase tracking-widest text-[9px] font-bold flex items-center gap-2">
+                      <div className="w-1 h-1 bg-[#D4B996] rounded-full" />{" "}
+                      Archetype Authenticated
+                    </span>
                   </form>
                 </motion.div>
               )}
