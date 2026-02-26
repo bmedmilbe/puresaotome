@@ -41,7 +41,7 @@ export default function Navigation() {
           The Concept
         </Link>
         <Link
-          href="/blog"
+          href="/insights"
           className="hover:text-[#D4B996] transition-colors hidden md:block"
         >
           Insights
