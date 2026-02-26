@@ -2,56 +2,70 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-const DashboardSide = () => {
-  return (
-    // ... dentro do seu componente DashboardPage ...
 
-    <aside className="w-64 border-r border-[#1A3C34]/10 p-8 hidden md:block">
+const DashboardSide = () => {
+  const pathname = usePathname();
+
+  return (
+    <aside className="w-64 border-r border-[#1A3C34]/10 p-8 hidden md:block h-screen sticky top-0 bg-[#F4F1EA]">
       <nav className="space-y-6 text-[10px] uppercase tracking-widest font-bold mt-12">
-        {/* 01. LOGISTICS - Onde o cliente está agora */}
         <Link href="/portal/logistics" className="block">
-          <div className="text-[#D4B996] hover:opacity-80 transition-opacity cursor-pointer">
+          <div
+            className={`${pathname === "/portal/logistics" ? "text-[#D4B996]" : "opacity-40"} hover:opacity-100 transition-opacity cursor-pointer`}
+          >
             01. Logistics
           </div>
         </Link>
 
-        {/* 02. CURATORS - Desbloqueado após o pagamento das £150 */}
         <Link href="/portal/curators" className="block">
-          <div className="opacity-40 hover:opacity-100 transition-opacity cursor-pointer">
+          <div
+            className={`${pathname === "/portal/curators" ? "text-[#D4B996]" : "opacity-40"} hover:opacity-100 transition-opacity cursor-pointer`}
+          >
             02. Curators
           </div>
         </Link>
 
-        {/* 02.5 SELECTION - O rascunho do itinerário (Itinerary Draft) */}
         <Link href="/portal/itinerary-draft" className="block">
-          <div className="opacity-40 hover:opacity-100 transition-opacity cursor-pointer">
+          <div
+            className={`${pathname === "/portal/itinerary-draft" ? "text-[#D4B996]" : "opacity-40"} hover:opacity-100 transition-opacity cursor-pointer`}
+          >
             03. Selection
           </div>
         </Link>
 
-        {/* 03. SETTLEMENT - O pagamento final dos serviços */}
         <Link href="/portal/settlement" className="block">
-          <div className="opacity-40 hover:opacity-100 transition-opacity cursor-pointer">
-            04. Cost Transparency
+          <div
+            className={`${pathname === "/portal/settlement" ? "text-[#D4B996]" : "opacity-40"} hover:opacity-100 transition-opacity cursor-pointer`}
+          >
+            04. Net Cost Ledger
           </div>
         </Link>
-
-        {/* 04. DOCUMENTS - Onde ficam os vouchers e PDFs finais */}
         <Link href="/portal/documents" className="block">
-          <div className="opacity-40 hover:opacity-100 transition-opacity cursor-pointer">
-            05. Documents
+          <div
+            className={`${pathname === "/portal/documents" ? "text-[#D4B996]" : "opacity-40"} hover:opacity-100 transition-opacity cursor-pointer`}
+          >
+            04. Documents
           </div>
         </Link>
       </nav>
 
-      {/* Pequeno detalhe de suporte no fim da sidebar */}
+      {/* Fiscal Bridge Status Section */}
       <div className="mt-32 pt-8 border-t border-[#1A3C34]/5">
-        <p className="text-[8px] uppercase tracking-widest opacity-30">
-          Support
+        <p className="text-[8px] uppercase tracking-widest opacity-30 mb-4">
+          Fiscal Bridge Status
         </p>
-        <p className="text-[9px] mt-2 font-serif italic">
-          The Bridge is Active
-        </p>
+        <div className="space-y-4">
+          <div className="flex items-center gap-2">
+            <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+            <p className="text-[9px] font-serif italic text-[#1A3C34]">
+              Buy-Back Active
+            </p>
+          </div>
+          <p className="text-[7px] uppercase tracking-tighter opacity-40 leading-tight">
+            Leftover Dobras will be credited to your UK account at the official
+            net rate.
+          </p>
+        </div>
       </div>
     </aside>
   );
