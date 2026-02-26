@@ -8,7 +8,7 @@ export default function ItineraryDraftPage() {
   const [passengers] = useState(2); // Este valor viria da base de dados/URL
   const [nights] = useState(7); // Este valor viria das datas do Step 01
   return (
-    <div className="max-w-4xl space-y-16">
+    <div className="space-y-16 p-16">
       {/* 1. SELECÇÃO DO GUIA (Baseado no que carregaste para ele) */}
       <section>
         <h3 className="font-serif text-2xl mb-6 italic">

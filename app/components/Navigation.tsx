@@ -41,6 +41,18 @@ export default function Navigation() {
           The Concept
         </Link>
         <Link
+          href="/bridge"
+          className="hover:text-[#D4B996] transition-colors hidden md:block"
+        >
+          The Bridge
+        </Link>
+        <Link
+          href="/curators"
+          className="hover:text-[#D4B996] transition-colors hidden md:block"
+        >
+          Curators
+        </Link>
+        <Link
           href="/insights"
           className="hover:text-[#D4B996] transition-colors hidden md:block"
         >
